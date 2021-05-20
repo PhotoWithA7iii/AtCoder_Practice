@@ -1,15 +1,29 @@
-N, L = map(int, input().split())
-K = int(input())
-A = list(map(int, input().split()))
-New_A = []
-for i in range(N+1):
-    if i == 0:
-        New_A.append(A[i])
-    elif 0 < i < N:
-        New_A.append(A[i]-A[i-1])
+def solve(M, N, A, L):
+    cnt, pre = 0, 0
+    for i in range(1, N):
+        if (A[i] - pre >= M) and (L - A[i] >= M):
+            cnt += 1
+            pre = A[i]
+    
+    if cnt >= K:
+        return True
     else:
-        New_A.append(L-A[i-1])
+        False
+    
 
-for 
+if __name__ == "__main__":
+    N, L = map(int, input().split())
+    K = int(input())
+    A = list(map(int, input().split()))
 
+    left = -1
+    right = L+1
+    while (right - left) > 1:
+        mid = left + (right - left)/2
 
+        if solve(mid, N, A, L) == False:
+            right = mid
+        else:
+            left = mid
+
+    
